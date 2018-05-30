@@ -1,0 +1,19 @@
+argon2-cffi==16.3.0
+cffi==1.11.0
+dj-database-url==0.4.2
+-e git://github.com/django/django.git@4803834aaad99a92e65b5c70ccdbcf4d07ea9b03#egg=Django
+django-authtools==1.6.0
+django-braces==1.11.0
+django-crispy-forms==1.6.1
+django-environ==0.4.4
+django-widget-tweaks==1.4.1
+gunicorn==19.7.1
+olefile==0.44
+pycparser==2.18
+python-decouple==3.1
+pytz==2017.2
+six==1.11.0
+sqlparse==0.2.4
+whitenoise==3.3.1
+django-debug-toolbar==1.8
+psycopg2
