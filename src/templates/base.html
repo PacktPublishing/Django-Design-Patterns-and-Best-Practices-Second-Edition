@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load staticfiles %}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}{% endblock description %}">
+    <meta name="author" content="Arun Ravindran">
+    <link rel="shortcut icon" href="{% static 'site/ico/favicon.ico' %}">
+
+    <title>{% block title %}{% include "includes/_brandname.html" %} :: {% endblock %}</title>
+
+    <!-- Vendored stylesheets-->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom styles for this site -->
+    {% block styles %}
+    <link href="{% static 'site/css/main.css' %}" rel="stylesheet">
+    {% endblock styles %}
+
+    <!-- Custom tags for the head tag -->
+    {% block extrahead %}{% endblock extrahead %}
+  </head>
+
+  <body>
+
+
+
+
+    {% block navbar %}
+    <nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-lg">
+      <a class="navbar-brand" href="{% url 'home'%}">
+        <img src="{% static 'site/img/logo.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        {% include "includes/_brandname.html" %}
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      {% if user.is_authenticated %}
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">My Feed</a>
+              <a class="dropdown-item" href="{% url 'show_me' %}">My Profile</a>
+              {% if user.is_staff %}
+              <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+              {% endif %}
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+      {% endif %}
+
+    </nav>
+    {% endblock %}
+
+
+
+
+    {% block messages %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}"  alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message|safe }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endblock %}
+
+
+
+
+    {% block pre_content %}{% endblock %}
+
+    <div class="container-fluid" id="maincontent">
+      {% block content %}{% endblock %}
+    </div><!-- /.container-fluid -->
+
+
+
+
+
+    <!-- Site footer -->
+    {% block footer %}
+    <!-- Some social button for contact will do -->
+    <a name="contact"></a>
+    <div class="container">
+      <div class="footer">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>&copy; Company {% now 'Y' %}</p>
+          </div>
+          <div class="col-lg-6 text-right">
+            Connect with us on our
+            <a href="#"><i class="material-icons" style="font-size: 1rem">public</i> Support page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+         ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'bootstrap/js/vendor/jquery.min.js' %}"><\/script>')</script>
+    <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'bootstrap/js/ie10-viewport-bug-workaround.js' %}"></script>
+    {% block scripts %}
+    {% endblock scripts %}
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block extrahead %}
+<style>
+ h2 {margin-top:20px;}
+</style>
+{% endblock extrahead %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+
+    <h2>My Form</h2>
+    {% crispy form %}
+
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,1 @@
+web: gunicorn src.superbook.wsgi --log-file - --pythonpath "./src"

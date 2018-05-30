@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+
+{% block footer %}
+{{ block.super }}
+<script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+<script>
+ CKEDITOR.replace("id_message", {
+   toolbar: [
+     [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList'],],
+   width: 600,
+ });
+</script>
+<style type="text/css">
+ .cke { clear: both; }
+</style>
+{% endblock %}

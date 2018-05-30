@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+
+      <h2>Join the Email Newsletter</h2>
+      {% crispy subscribe_form %}
+
+      <h2>Leave the Email Newsletter</h2>
+      {% crispy unsubscribe_form %}
+
+      <div class="alert alert-secondary" role="alert">
+        Check your console output after submitting the form. The confirmations are output using <code>print()</code> statements.
+      </div>
+
+    </div>
+  </div>
+
+{% endblock content %}

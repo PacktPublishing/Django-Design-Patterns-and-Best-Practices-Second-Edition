@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block pre_content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Welcome to SuperBook!</h1>
+    <p class="lead">A social network for hard working superheroes and their awesome fans.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="{% url 'login'%}" role="button">Login</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

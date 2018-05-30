@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mainform">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+
+    {% if user.is_authenticated %}
+    <p>Sorry you are already logged in as <b>{{ user.username }}</b>. Do you want to <a href="{% url 'logout' %}">logout?</a></p>
+    {% else %}
+    <h2> Log-in </h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% include 'includes/_render_bootstrap4_form.html' with form=form %}
+      <button type="submit" class="btn btn-primary">Login</button>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <p class="text-right"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    {% endif %}
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+{% endblock %}

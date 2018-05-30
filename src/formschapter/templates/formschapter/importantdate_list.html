@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h1>Important Dates</h1>
+      <div class="list-group">
+      {% for date in importantdate_list %}
+        <a href="{% url 'formschapter:impdate_detail' pk=date.pk%}" class="list-group-item">{{ date.date}} - {{ date.desc }}</a>
+      {% empty %}
+        <p>None found!</p>
+      {% endfor %}
+      </div>
+      <a href="{% url 'formschapter:impdate_create' %}" class="btn btn-primary">Create New</a>
+    </div>
+  </div>
+
+{% endblock content %}

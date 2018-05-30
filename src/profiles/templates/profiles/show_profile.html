@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h1 class="display-3">{{ show_user.username }}</h1>
+
+    {% if editable %}
+    <a href="{# url 'profiles:edit_self' #}" class="btn btn-outline-info mb-4">Edit Profile</a>
+    {% endif %}
+
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th scope="row">First name</th>
+          <td>{{ show_user.first_name }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Last name</th>
+          <td>{{ show_user.last_name }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Bio</th>
+          <td>{{ show_user.profile.bio }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Age</th>
+          <td>{{ show_user.profile.get_age }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Superhero?</th>
+          <td>
+            {% if show_user.profile.user_type != 0 %}
+            Yes
+            {% else %}
+            No
+            {% endif %}
+          </td>
+        </tr>
+        {% if show_user.profile.user_type != 0 %}
+
+        {# Superhero Details #}
+        <tr>
+          <th scope="row">Origin</th>
+          <td>{{ show_user.profile.origin }}</td>
+        </tr>
+        {% else %}
+
+        {# Ordinary person Details #}
+        <tr>
+          <th scope="row">Address</th>
+          <td>{{ show_user.profile.address }}</td>
+        </tr>
+        {% endif %}
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
